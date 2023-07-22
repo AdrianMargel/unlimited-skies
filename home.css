@@ -1,0 +1,95 @@
+body{
+	background-color: white;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Nunito', sans-serif;
+	background-image: url("img/background.png");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	color:white;
+}
+body>div>.card{
+	max-width: 800px;
+	padding:0 20px;
+	margin:50px 20px;
+	padding: 20px;
+	border-radius: 20px;
+	background-color: #00000080;
+}
+p{
+	font-size:20px;
+	margin:20px 0;
+	text-align: center;
+}
+h1{
+	display:none;
+}
+.titleImg{
+	margin-top:50px;
+	display: flex;
+	justify-content: center;
+}
+.titleImg>img{
+	max-width: 80vw;
+}
+h2{
+	font-size:30px;
+	margin:20px 0;
+	text-align: center;
+}
+button{
+	background: none;
+}
+.play{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.buttonClickable{
+	margin-top:20px;
+	margin-bottom:20px;
+	position: relative;
+	padding: 0;
+	border: none;
+	border-radius: 100px;
+	background-color: #2d9938;
+	box-shadow: 0 0 13.36200832951853px #00000080;
+}
+.buttonClickable .surface{
+	width: 100px;
+	background-color: #3dcc4b;
+	font-family: 'Nunito', sans-serif;
+	font-weight:900;
+	font-size: 20px;
+	color: white;
+	border: none;
+	padding: 10px 30px;
+	border-radius: 100px;
+	position: relative;
+	bottom: 10px;
+	transition: bottom 0.1s;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.buttonClickable:active .surface{
+	bottom: 4px;
+}
+.buttonClickable:active .selector{
+	bottom: -12px;
+}
+a{
+	color:#3dcc4b;
+	text-decoration: underline;
+	font-weight: 700;
+}
+a:hover{
+	text-decoration: underline;
+}
+a:visited{
+	color:#3dcc4b;
+}

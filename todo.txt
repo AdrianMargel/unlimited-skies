@@ -1,0 +1,14 @@
+TODO:
+-settings
+	-selection for difficulty scaling
+	-graphics settings
+-initial loading bar?
+-tracking
+-seo/landing page
+-mobile version
+
+-particles variable framerate
+
+-more interesting mothership?
+-shader precision?
+
