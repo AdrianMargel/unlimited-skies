@@ -428,6 +428,13 @@ class PlaneSelector extends CustomElm{
 				gameRunner.music.unmute();
 			}
 		}
+		let toggleFullscreen=()=>{
+			if(document.fullscreenElement==null){
+				document.body.requestFullscreen();
+			}else{
+				document.exitFullscreen();
+			}
+		};
 		let unlockPrice=bind(0);
 		let upgradePrice=bind(0);
 		let downgradePrice=bind(0);
@@ -461,6 +468,7 @@ class PlaneSelector extends CustomElm{
 							<div class="settings">
 								<button onclick=${attr(act(toggleVolume))} class=${attr(()=>muted.data?"muted":"unmuted")}></button>
 								<button onclick=${attr(act(openSettings))} class="gear"></button>
+								<button onclick=${attr(act(toggleFullscreen))} class="fullscreen"></button>
 							</div>
 							<div class="play ${!unlocked.data?"locked":""}">
 								${new ButtonClickable("PLAY",tryPlay)}
@@ -651,6 +659,12 @@ defineElm(PlaneSelector,scss`&{
 							background-position:center;
 							background-repeat:no-repeat;
 							background-size:26px;
+						}
+						&.fullscreen{
+							background-image:url("img/expand.svg");
+							background-position:center;
+							background-repeat:no-repeat;
+							background-size:24px;
 						}
 						width:50px;
 						height:50px;
@@ -937,6 +951,13 @@ class PauseMenu extends CustomElm{
 		let openSettings=()=>{
 			showSettings.data=true;
 		}
+		let toggleFullscreen=()=>{
+			if(document.fullscreenElement==null){
+				document.body.requestFullscreen();
+			}else{
+				document.exitFullscreen();
+			}
+		};
 
 		this.attr("class",()=>show.data?"":"hidden")(show);
 		this.define(html`
@@ -945,8 +966,8 @@ class PauseMenu extends CustomElm{
 				<div class="settings">
 					<button onclick=${attr(act(toggleVolume))} class=${attr(()=>muted.data?"muted":"unmuted")(muted)}></button>
 					<button onclick=${attr(act(openSettings))} class="gear"></button>
+					<button onclick=${attr(act(toggleFullscreen))} class="fullscreen"></button>
 				</div>
-				<span class="text">(Press F11 for fullscreen)</span>
 				${new ButtonClickable("Resume",resume)}
 				${addClass("bad",new ButtonClickable("End Game",end))}
 			</div>
@@ -988,6 +1009,12 @@ defineElm(PauseMenu,scss`&{
 					background-position:center;
 					background-repeat:no-repeat;
 					background-size:26px;
+				}
+				&.fullscreen{
+					background-image:url("img/expand-white.svg");
+					background-position:center;
+					background-repeat:no-repeat;
+					background-size:24px;
 				}
 				width:50px;
 				height:50px;

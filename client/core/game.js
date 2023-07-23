@@ -44,6 +44,7 @@ class Game{
 		this.messageCallback=null;
 
 		this.escDown=false;
+		this.spaceDown=false;
 		this.queuedActions=[];
 	}
 	init(){
@@ -195,17 +196,23 @@ class Game{
 	}
 	run(disp,ctrl,timeStep,runSpeed){
 		this.runSpeed=runSpeed;
+
 		let escPress=ctrl.pressedKeys["27"]&&!this.escDown;
 		this.escDown=ctrl.pressedKeys["27"];
-		if(escPress){
+		let spacePress=ctrl.isKeyDown(" ")&&!this.spaceDown;
+		this.spaceDown=ctrl.isKeyDown(" ");
+
+		if(escPress||spacePress){
 			if(showSettings.data){
-				showSettings.data=false;
+				if(escPress){
+					showSettings.data=false;
+				}
 			}else if(this.paused){
 				this.resume();
 				return;
 			}
 		}
-		if(showGameOver.data&&ctrl.isKeyDown(" ")){
+		if(showGameOver.data&&spacePress){
 			this.end();
 		}
 		if(this.paused){
@@ -225,7 +232,7 @@ class Game{
 						this.player.shoot(this.pBullets,timeStep);
 						this.player.boost(timeStep);
 					}
-					if(escPress){
+					if(escPress||spacePress){
 						this.pause();
 					}
 				}
