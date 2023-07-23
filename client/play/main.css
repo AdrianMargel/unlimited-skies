@@ -1,7 +1,6 @@
 body{
 	overflow: hidden;
 	background-color: black;
-	/*background: radial-gradient(#EFE9D7 20%, #E2D9C3 100%);*/
 	font-family: 'Nunito', sans-serif;
 }
 #canvasContainer{
