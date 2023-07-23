@@ -6,6 +6,7 @@ TODO:
 -tracking
 -seo/landing page
 -mobile version
+-fullscreen button
 
 -particles variable framerate
 
