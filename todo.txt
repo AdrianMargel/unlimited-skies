@@ -3,6 +3,7 @@ TODO:
 	-selection for difficulty scaling
 	-graphics settings
 -initial loading bar?
+-initially load the correct plane
 -tracking
 -mobile version
 -initial music shuffling?

@@ -880,6 +880,19 @@ defineElm(PlaneSelector,scss`&{
 				}
 				${theme.short}{
 					&.description{
+						font-size: 15px;
+						margin-bottom:15px;
+					}
+					&.name{
+						font-size: 30px;
+						margin-bottom:15px;
+					}
+					&.level{
+						font-size: 15px;
+					}
+				}
+				${theme.superShort}{
+					&.description{
 						font-size: 10px;
 						margin-bottom:5px;
 					}
