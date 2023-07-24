@@ -439,11 +439,11 @@ class Game{
 		// this.waterLine.waterline.forEach((w,i)=>disp.circle2(i*this.waterLine.waterSize,w,10,10));
 
 		if(sharedTextures.isLoaded()){
-			let clouds=this.getClouds();
+			// let clouds=this.getClouds();
 
-			sharedTextures.run(disp.cam,this.waterLine.line,this.shadowLine.line,clouds);
-			cloudPaint.run(disp.cam,clouds,this.time,this.screenStart);
-			background.run(disp.cam,this.cloudSeedOffset,this.time,this.screenStart);
+			// sharedTextures.run(disp.cam,this.waterLine.line,this.shadowLine.line,clouds);
+			// cloudPaint.run(disp.cam,clouds,this.time,this.screenStart);
+			// background.run(disp.cam,this.cloudSeedOffset,this.time,this.screenStart);
 			// bulletRenderer.run(disp.cam,this.screenStart);
 			// renderer.run(disp.cam,this.screenStart);
 			// particleRenderer.run(disp.cam);
