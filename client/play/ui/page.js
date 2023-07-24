@@ -635,8 +635,8 @@ defineElm(PlaneSelector,scss`&{
 			>div{
 				text-align:center;
 				>img{
+					max-width:calc(100vw - 200px);
 					${theme.mobile}{
-						width:150px;
 						position:fixed;
 						left:20px;
 						top:20px;
