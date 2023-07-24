@@ -4,7 +4,6 @@ TODO:
 	-graphics settings
 -initial loading bar?
 -tracking
--seo/landing page
 -mobile version
 -initial music shuffling?
 -reduce file sizes (img and sound)

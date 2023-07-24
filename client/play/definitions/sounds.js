@@ -149,14 +149,14 @@ class SoundManager{
 		this.ctx=new AudioContext();
 
 		this.sounds=[
-			this.gunshot=new Sound(this,'sound/gunshot.wav',1).init(),
-			this.hit=new Sound(this,'sound/hit.wav',5).init(),
-			this.bang=new Sound(this,'sound/bang.wav',1).init(),
-			this.laser=new Sound(this,'sound/laser.wav',.75).init(),
-			this.splash=new Sound(this,'sound/splash-2.wav',5).init(),
+			this.gunshot=new Sound(this,'sound/gunshot.mp3',1).init(),
+			this.hit=new Sound(this,'sound/hit.mp3',5).init(),
+			this.bang=new Sound(this,'sound/bang.mp3',1).init(),
+			this.laser=new Sound(this,'sound/laser.mp3',.75).init(),
+			this.splash=new Sound(this,'sound/splash-2.mp3',5).init(),
 		];
 		this.rocket=new SoundLooping(this,'sound/rocket.mp3',.75).init();
-		this.prop=new SoundLooping(this,'sound/prop.ogg',1).init();
+		this.prop=new SoundLooping(this,'sound/prop.mp3',1).init();
 	}
 	prime(){
 		this.sounds.forEach(s=>s.prime());
@@ -196,18 +196,18 @@ class MusicManager{
 		this.audioPlayer.addEventListener("ended",()=>this.nextSong());
 
 		this.songs=[
-			"Waterflame - Geometrical Dominator.mp3",
-			"Waterflame - Rocket Race.mp3",
-			"Waterflame - Clutterfunk, Pt. 2.mp3",
-			"Waterflame - Beatfever.mp3",
-			"Waterflame - Fireburst.mp3",
-			"Waterflame - Give Me a Break.mp3",
-			"Waterflame - Snow in the Air.mp3",
-			"Waterflame - Run.mp3",
-			"Waterflame - Striker.mp3",
-			"Waterflame - Combo Breaker.mp3",
-			"Waterflame - Supra Zone.mp3",
-			"Waterflame - Backbonebreaks.mp3",
+			"Geometrical Dominator.mp3",
+			"Rocket Race.mp3",
+			"Clutterfunk, Pt. 2.mp3",
+			"Beatfever.mp3",
+			"Fireburst.mp3",
+			"Give Me a Break.mp3",
+			"Snow in the Air.mp3",
+			"Run.mp3",
+			"Striker.mp3",
+			"Combo Breaker.mp3",
+			"Supra Zone.mp3",
+			"Backbonebreaks.mp3",
 		];
 		this.songsBackup=this.songs;
 	}
@@ -263,5 +263,4 @@ class MusicManager{
 		this.volume=this.volumeBase;
 		this.audioPlayer.volume=this.volume;
 	}
-
 }
