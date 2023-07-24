@@ -6,7 +6,6 @@ TODO:
 -tracking
 -mobile version
 -initial music shuffling?
--reduce file sizes (img and sound)
 
 -particles variable framerate
 
