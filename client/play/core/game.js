@@ -449,9 +449,9 @@ class Game{
 			sharedTextures.run(disp.cam,this.waterLine.line,this.shadowLine.line,clouds);
 			// cloudPaint.run(disp.cam,clouds,this.time,this.screenStart);
 			background.run(disp.cam,this.cloudSeedOffset,this.time,this.screenStart);
-			// bulletRenderer.run(disp.cam,this.screenStart);
-			// renderer.run(disp.cam,this.screenStart);
-			// particleRenderer.run(disp.cam);
+			bulletRenderer.run(disp.cam,this.screenStart);
+			renderer.run(disp.cam,this.screenStart);
+			particleRenderer.run(disp.cam);
 		}
 	}
 	adjustCamera(disp,ctrl,timeStep){

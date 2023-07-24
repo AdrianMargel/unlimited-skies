@@ -16,7 +16,6 @@ class RenderShader{
 		this.count=0;
 	}
 	img(x,y,sizeX,sizeY,angle,imgX,imgY,imgSizeX,imgSizeY,flip,offsetX=0,offsetY=0){
-		return;
 		let rotX=Math.cos(angle);
 		let rotY=Math.sin(angle);
 		this.position.push(

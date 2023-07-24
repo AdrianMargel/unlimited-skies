@@ -14,7 +14,6 @@ class BulletShader{
 		this.count=0;
 	}
 	line(x,y,size,veloX,veloY,age,colorR,colorG,colorB){
-		return;
 		this.position.push(
 			1, 1,
 			1, -1,

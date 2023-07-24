@@ -14,7 +14,6 @@ class ParticleShader{
 		this.count=0;
 	}
 	spot(x,y,size,veloX,veloY,colorR,colorG,colorB,airOnly){
-		return;
 		this.position.push(
 			1, 1,
 			1, -1,
