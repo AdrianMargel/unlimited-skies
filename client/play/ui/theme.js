@@ -21,6 +21,8 @@ class Theme{
 
 		/* OTHER */
 		this.mobile="@media only screen and (max-width: 600px)";
+		this.short="@media only screen and (max-height: 750px)";
+		this.superShort="@media only screen and (max-height: 450px)";
 		this.boxShadowStep=(a)=>"box-shadow: 0 0 "+this.#genericStep(a,0,80,30)+"px #00000080;";
 	}
 	#genericStep(a,min,max,mid){

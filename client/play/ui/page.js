@@ -328,6 +328,9 @@ defineElm(ButtonPrice,scss`&{
 			color: white;
 			border: none;
 			padding: 10px 30px;
+			${theme.superShort}{
+				padding: 0px 20px;
+			}
 			border-radius: 100px;
 			position: relative;
 			bottom: 10px;
@@ -611,6 +614,9 @@ defineElm(PlaneSelector,scss`&{
 				font-size:100px;
 				border:none;
 				background:none;
+				${theme.short}{
+					font-size:50px;
+				}
 			}
 		}
 		>.next{
@@ -625,12 +631,18 @@ defineElm(PlaneSelector,scss`&{
 				font-size:100px;
 				border:none;
 				background:none;
+				${theme.short}{
+					font-size:50px;
+				}
 			}
 		}
 	
 		>.top{
 			position:absolute;
 			bottom:200px;
+			${theme.short}{
+				bottom:150px;
+			}
 			${theme.center}
 			>div{
 				text-align:center;
@@ -640,6 +652,9 @@ defineElm(PlaneSelector,scss`&{
 						position:fixed;
 						left:20px;
 						top:20px;
+					}
+					${theme.short}{
+						display:none;
 					}
 				}
 				>.settings{
@@ -701,6 +716,12 @@ defineElm(PlaneSelector,scss`&{
 			${theme.mobile}{
 				top:150px;
 			}
+			${theme.short}{
+				top:150px;
+			}
+			${theme.superShort}{
+				top:125px;
+			}
 			>.unlock{
 				text-align:center;
 				font-weight:700;
@@ -726,9 +747,13 @@ defineElm(PlaneSelector,scss`&{
 					width:320px;
 				}
 				height:20px;
+				margin-bottom:20px;
+				${theme.short}{
+					height:10px;
+					margin-bottom:5px;
+				}
 				border-radius:10px;
 				box-sizing:border-box;
-				margin-bottom:20px;
 				${theme.center}
 				align-items:stretch;
 				overflow:hidden;
@@ -761,6 +786,9 @@ defineElm(PlaneSelector,scss`&{
 						0 0 3px #ffffff;
 					>${ButtonPrice}{
 						margin-top:20px;
+						${theme.short}{
+							margin-top:15px;
+						}
 						>button{
 							background-color: ${hsv(.35,.7,.6)};
 							>.surface{
@@ -788,6 +816,9 @@ defineElm(PlaneSelector,scss`&{
 						0 0 3px #ffffff;
 					${ButtonPrice}{
 						margin-top:20px;
+						${theme.short}{
+							margin-top:15px;
+						}
 						>button{
 							background-color: ${hsv(0,.6,.6)};
 							>.surface{
@@ -845,6 +876,19 @@ defineElm(PlaneSelector,scss`&{
 					}
 					&.level{
 						font-size: 15px;
+					}
+				}
+				${theme.short}{
+					&.description{
+						font-size: 10px;
+						margin-bottom:5px;
+					}
+					&.name{
+						font-size: 20px;
+						margin-bottom:5px;
+					}
+					&.level{
+						font-size: 10px;
 					}
 				}
 			}
