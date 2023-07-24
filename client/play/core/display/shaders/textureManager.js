@@ -39,6 +39,11 @@ class TextureManager{
 		});
 	}
 	run(cam,waterArr,shadowArr,cloudsObj){
+		if(this.started){
+			return;
+		}
+		this.started=this.started??true;
+
 		twgl.resizeCanvasToDisplaySize(gl.canvas,cam.pixelScale);
 		gl.viewport(0,0,gl.canvas.width,gl.canvas.height);
 
