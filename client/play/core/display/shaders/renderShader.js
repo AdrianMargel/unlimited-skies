@@ -4,15 +4,15 @@ class RenderShader{
 		this.prime();
 	}
 	prime(){
-		this.position=[];
-		this.rotation=[];
-		this.texturePos=[];
-		this.textureSize=[];
-		this.objectPos=[];
-		this.objectSize=[];
-		this.objectAngle=[];
-		this.offset=[];
-		this.indices=[];
+		this.position.length=0;
+		this.rotation.length=0;
+		this.texturePos.length=0;
+		this.textureSize.length=0;
+		this.objectPos.length=0;
+		this.objectSize.length=0;
+		this.objectAngle.length=0;
+		this.offset.length=0;
+		this.indices.length=0;
 		this.count=0;
 	}
 	img(x,y,sizeX,sizeY,angle,imgX,imgY,imgSizeX,imgSizeY,flip,offsetX=0,offsetY=0){
