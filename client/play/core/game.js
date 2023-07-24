@@ -440,7 +440,7 @@ class Game{
 
 		if(sharedTextures.isLoaded()){
 			let clouds=this.getClouds();
-			
+
 			sharedTextures.run(disp.cam,this.waterLine.line,this.shadowLine.line,clouds);
 			cloudPaint.run(disp.cam,clouds,this.time,this.screenStart);
 			background.run(disp.cam,this.cloudSeedOffset,this.time,this.screenStart);
