@@ -636,7 +636,10 @@ defineElm(PlaneSelector,scss`&{
 				text-align:center;
 				>img{
 					${theme.mobile}{
-						width:300px;
+						width:150px;
+						position:fixed;
+						left:20px;
+						top:20px;
 					}
 				}
 				>.settings{

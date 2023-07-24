@@ -11,6 +11,6 @@
 		changed=true;
 	}
 	if(changed){
-		window.location.replace(hostname+path);
+		window.location.replace("https://"+hostname+path);
 	}
 }
