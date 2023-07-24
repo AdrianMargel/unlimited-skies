@@ -329,7 +329,7 @@ defineElm(ButtonPrice,scss`&{
 			border: none;
 			padding: 10px 30px;
 			${theme.superShort}{
-				padding: 0px 20px;
+				padding: 5px 30px;
 			}
 			border-radius: 100px;
 			position: relative;
