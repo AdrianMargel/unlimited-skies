@@ -1,5 +1,14 @@
 class RenderShader{
 	constructor(){
+		this.position=[];
+		this.rotation=[];
+		this.texturePos=[];
+		this.textureSize=[];
+		this.objectPos=[];
+		this.objectSize=[];
+		this.objectAngle=[];
+		this.offset=[];
+		this.indices=[];
 		this.init();
 		this.prime();
 	}
