@@ -467,7 +467,7 @@ class PlaneSelector extends CustomElm{
 				<div>
 					<div class="top">
 						<div>
-							<img src="img/logo.png"/>
+							<img src="/play/img/logo.png"/>
 							<div class="settings">
 								<button onclick=${attr(act(toggleVolume))} class=${attr(()=>muted.data?"muted":"unmuted")}></button>
 								<button onclick=${attr(act(openSettings))} class="gear"></button>
@@ -661,25 +661,25 @@ defineElm(PlaneSelector,scss`&{
 					${theme.center}
 					>button{
 						&.muted{
-							background-image:url("img/volume-xmark.svg");
+							background-image:url("/play/img/volume-xmark.svg");
 							background-position:center;
 							background-repeat:no-repeat;
 							background-size:30px;
 						}
 						&.unmuted{
-							background-image:url("img/volume-high.svg");
+							background-image:url("/play/img/volume-high.svg");
 							background-position:center;
 							background-repeat:no-repeat;
 							background-size:34px;
 						}
 						&.gear{
-							background-image:url("img/gear.svg");
+							background-image:url("/play/img/gear.svg");
 							background-position:center;
 							background-repeat:no-repeat;
 							background-size:26px;
 						}
 						&.fullscreen{
-							background-image:url("img/expand.svg");
+							background-image:url("/play/img/expand.svg");
 							background-position:center;
 							background-repeat:no-repeat;
 							background-size:24px;
@@ -1053,25 +1053,25 @@ defineElm(PauseMenu,scss`&{
 			${theme.center}
 			>button{
 				&.muted{
-					background-image:url("img/volume-xmark-white.svg");
+					background-image:url("/play/img/volume-xmark-white.svg");
 					background-position:center;
 					background-repeat:no-repeat;
 					background-size:30px;
 				}
 				&.unmuted{
-					background-image:url("img/volume-high-white.svg");
+					background-image:url("/play/img/volume-high-white.svg");
 					background-position:center;
 					background-repeat:no-repeat;
 					background-size:34px;
 				}
 				&.gear{
-					background-image:url("img/gear-white.svg");
+					background-image:url("/play/img/gear-white.svg");
 					background-position:center;
 					background-repeat:no-repeat;
 					background-size:26px;
 				}
 				&.fullscreen{
-					background-image:url("img/expand-white.svg");
+					background-image:url("/play/img/expand-white.svg");
 					background-position:center;
 					background-repeat:no-repeat;
 					background-size:24px;

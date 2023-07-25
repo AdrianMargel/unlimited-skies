@@ -149,14 +149,14 @@ class SoundManager{
 		this.ctx=new AudioContext();
 
 		this.sounds=[
-			this.gunshot=new Sound(this,'sound/gunshot.mp3',1).init(),
-			this.hit=new Sound(this,'sound/hit.mp3',5).init(),
-			this.bang=new Sound(this,'sound/bang.mp3',1).init(),
-			this.laser=new Sound(this,'sound/laser.mp3',.75).init(),
-			this.splash=new Sound(this,'sound/splash-2.mp3',5).init(),
+			this.gunshot=new Sound(this,"/play/sound/gunshot.mp3",1).init(),
+			this.hit=new Sound(this,"/play/sound/hit.mp3",5).init(),
+			this.bang=new Sound(this,"/play/sound/bang.mp3",1).init(),
+			this.laser=new Sound(this,"/play/sound/laser.mp3",.75).init(),
+			this.splash=new Sound(this,"/play/sound/splash-2.mp3",5).init(),
 		];
-		this.rocket=new SoundLooping(this,'sound/rocket.mp3',.75).init();
-		this.prop=new SoundLooping(this,'sound/prop.mp3',1).init();
+		this.rocket=new SoundLooping(this,"/play/sound/rocket.mp3",.75).init();
+		this.prop=new SoundLooping(this,"/play/sound/prop.mp3",1).init();
 	}
 	prime(){
 		this.sounds.forEach(s=>s.prime());
@@ -232,7 +232,7 @@ class MusicManager{
 	}
 	nextSong(){
 		let song=this.songs[0];
-		this.audioPlayer.setAttribute("src","music/"+song);
+		this.audioPlayer.setAttribute("src","/play/music/"+song);
 		this.audioPlayer.currentTime=0;
 		this.audioPlayer.volume=this.volume;
 		this.audioPlayer.play();

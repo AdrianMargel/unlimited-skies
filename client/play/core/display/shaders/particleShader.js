@@ -1,12 +1,13 @@
 class ParticleShader{
 	constructor(){
-		this.position=new DynamicTypedArray(Float32Array);
-		this.objectPos=new DynamicTypedArray(Float32Array);
-		this.objectVelo=new DynamicTypedArray(Float32Array);
-		this.objectSize=new DynamicTypedArray(Float32Array);
-		this.objectColor=new DynamicTypedArray(Float32Array);
-		this.objectAirOnly=new DynamicTypedArray(Float32Array);
-		this.indices=new DynamicTypedArray(Uint16Array);
+		let maxParticles=1000;//This should match with the EffectManager
+		this.position=new DynamicTypedArray(Float32Array,8,maxParticles);
+		this.objectPos=new DynamicTypedArray(Float32Array,8,maxParticles);
+		this.objectVelo=new DynamicTypedArray(Float32Array,8,maxParticles);
+		this.objectSize=new DynamicTypedArray(Float32Array,4,maxParticles);
+		this.objectColor=new DynamicTypedArray(Float32Array,12,maxParticles);
+		this.objectAirOnly=new DynamicTypedArray(Float32Array,4,maxParticles);
+		this.indices=new DynamicTypedArray(Uint16Array,6);
 		this.bufferInfo=null;
 		this.init();
 		this.prime();

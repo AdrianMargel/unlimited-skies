@@ -11,9 +11,9 @@ class Game{
 		this.particles=[];
 		this.specials=[];
 
-		this.difficultyScale=1;//TODO (also remember to scale money gained)
-		this.playerHealthScale=.5;
-		this.alienHealthScale=1;
+		this.difficultyScale=.5;//TODO (also remember to scale money gained)
+		this.playerHealthScale=.25;
+		this.alienHealthScale=2;
 
 		this.director=new Director(this);
 
@@ -442,7 +442,7 @@ class Game{
 			let clouds=this.getClouds();
 
 			sharedTextures.run(disp.cam,this.waterLine.line,this.shadowLine.line,clouds);
-			cloudPaint.run(disp.cam,clouds,this.time,this.screenStart);
+			// cloudPaint.run(disp.cam,clouds,this.time,this.screenStart);
 			background.run(disp.cam,this.cloudSeedOffset,this.time,this.screenStart);
 			bulletRenderer.run(disp.cam,this.screenStart);
 			renderer.run(disp.cam,this.screenStart);

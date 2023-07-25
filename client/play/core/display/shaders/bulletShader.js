@@ -1,12 +1,12 @@
 class BulletShader{
 	constructor(){
-		this.position=new DynamicTypedArray(Float32Array);
-		this.objectPos=new DynamicTypedArray(Float32Array);
-		this.objectVelo=new DynamicTypedArray(Float32Array);
-		this.objectSize=new DynamicTypedArray(Float32Array);
-		this.objectColor=new DynamicTypedArray(Float32Array);
-		this.objectAge=new DynamicTypedArray(Float32Array);
-		this.indices=new DynamicTypedArray(Uint16Array);
+		this.position=new DynamicTypedArray(Float32Array,8);
+		this.objectPos=new DynamicTypedArray(Float32Array,8);
+		this.objectVelo=new DynamicTypedArray(Float32Array,8);
+		this.objectSize=new DynamicTypedArray(Float32Array,4);
+		this.objectColor=new DynamicTypedArray(Float32Array,12);
+		this.objectAge=new DynamicTypedArray(Float32Array,4);
+		this.indices=new DynamicTypedArray(Uint16Array,6);
 		this.bufferInfo=null;
 		this.init();
 		this.prime();

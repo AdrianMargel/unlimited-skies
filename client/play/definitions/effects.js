@@ -2,7 +2,7 @@
 class EffectManager{
 	constructor(game){
 		this.game=game;
-		this.maxParticles=1000;
+		this.maxParticles=1000;//This should match with the ParticleShader
 	}
 	getChance(){
 		let space=this.maxParticles-this.game.particles.length;

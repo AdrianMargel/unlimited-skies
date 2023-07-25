@@ -1,14 +1,14 @@
 class RenderShader{
 	constructor(){
-		this.position=new DynamicTypedArray(Float32Array);
-		this.rotation=new DynamicTypedArray(Float32Array);
-		this.texturePos=new DynamicTypedArray(Float32Array);
-		this.textureSize=new DynamicTypedArray(Float32Array);
-		this.objectPos=new DynamicTypedArray(Float32Array);
-		this.objectSize=new DynamicTypedArray(Float32Array);
-		this.objectAngle=new DynamicTypedArray(Float32Array);
-		this.offset=new DynamicTypedArray(Float32Array);
-		this.indices=new DynamicTypedArray(Uint16Array);
+		this.position=new DynamicTypedArray(Float32Array,8);
+		this.rotation=new DynamicTypedArray(Float32Array,8);
+		this.texturePos=new DynamicTypedArray(Float32Array,8);
+		this.textureSize=new DynamicTypedArray(Float32Array,8);
+		this.objectPos=new DynamicTypedArray(Float32Array,8);
+		this.objectSize=new DynamicTypedArray(Float32Array,8);
+		this.objectAngle=new DynamicTypedArray(Float32Array,4);
+		this.offset=new DynamicTypedArray(Float32Array,8);
+		this.indices=new DynamicTypedArray(Uint16Array,6);
 		this.bufferInfo=null;
 		this.init();
 		this.prime();

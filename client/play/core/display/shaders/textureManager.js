@@ -18,22 +18,22 @@ class TextureManager{
 		}
 
 		this.loadImageTexture("spriteSheet",{
-			src: "img/sprites.png",
+			src: "/play/img/sprites.png",
 			minMag: gl.NEAREST,
 			wrap: gl.CLAMP_TO_EDGE
 		});
 		this.loadImageTexture("noise",{
-			src: "img/noise2D.png",
+			src: "/play/img/noise2D.png",
 			minMag: gl.LINEAR,
 			wrap: gl.REPEAT
 		});
 		this.loadImageTexture("worley",{
-			src: "img/worley2D.png",
+			src: "/play/img/worley2D.png",
 			minMag: gl.LINEAR,
 			wrap: gl.REPEAT
 		});
 		this.loadImageTexture("backgrounds",{
-			src: "img/backgrounds.png",
+			src: "/play/img/backgrounds.png",
 			minMag: gl.LINEAR,
 			wrap: gl.CLAMP_TO_EDGE
 		});

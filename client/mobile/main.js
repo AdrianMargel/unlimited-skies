@@ -4,7 +4,7 @@ let gl=document.getElementById("c").getContext("webgl2",{
 });
 // gl.getExtension('EXT_color_buffer_float');
 
-const MAX_SHADER_ITEMS=10000;
+const MAX_SHADER_ITEMS=5000;
 let sharedTextures=new TextureManager();
 let cloudPaint=new CloudPaintShader();
 let background=new BackgroundShader();

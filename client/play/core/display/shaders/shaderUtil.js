@@ -1,17 +1,25 @@
 
 class DynamicTypedArray{
-	constructor(type,maxItems=10000){
+	constructor(type,components=1,maxItems=MAX_SHADER_ITEMS){
 		this.type=type;
 		this.itemBytes=this.type.BYTES_PER_ELEMENT;
-		this.maxItems=maxItems;
+		this.components=components;
+		this.maxItems=maxItems*this.components;
 
 		this.array=new ArrayBuffer(this.maxItems*this.itemBytes);
 		this.view=new this.type(this.array);
 		this.length=0;
 	}
+	hasSpace(count){
+		return this.length+count<=this.maxItems;
+	}
 	push(...items){
+		if(!this.hasSpace(items.length)){
+			return false;
+		}
 		this.view.set(items,this.length);
 		this.length+=items.length;
+		return true;
 	}
 	reset(){
 		this.length=0;

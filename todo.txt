@@ -1,12 +1,14 @@
 TODO:
--settings
-	-selection for difficulty scaling
-	-graphics settings
 -initial loading bar?
 -initially load the correct plane
--tracking
--mobile version
 -initial music shuffling?
+
+-tracking
+-email list signup
+
+-nicer landing page + mobile option
+-mobile version
+-custom versions
 
 -particles variable framerate
 
