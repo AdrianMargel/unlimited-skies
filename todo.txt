@@ -1,16 +1,16 @@
 TODO:
 -initial loading bar?
 -initially load the correct plane
+	-better saving to support updates/custom versions 
 -initial music shuffling?
+	-don't load music until it is needed?
+
+-nicer landing page + mobile option
+
+-particles variable framerate
 
 -tracking
 -email list signup
-
--nicer landing page + mobile option
--mobile version
--custom versions
-
--particles variable framerate
 
 -more interesting mothership?
 -shader precision?

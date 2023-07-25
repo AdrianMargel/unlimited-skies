@@ -1047,6 +1047,9 @@ defineElm(PauseMenu,scss`&{
 		flex-direction:column;
 		background-color:#000000D0;
 		padding:50px 100px;
+		${theme.mobile}{
+			padding:25px 50px;
+		}
 		border-radius:20px;
 	
 		>.settings{
@@ -1171,6 +1174,9 @@ defineElm(GameOverMenu,scss`&{
 		flex-direction:column;
 		background-color:#000000D0;
 		padding:50px 100px;
+		${theme.mobile}{
+			padding:25px 50px;
+		}
 		border-radius:20px;
 	
 		>span{
@@ -1243,11 +1249,16 @@ defineElm(GameWinMenu,scss`&{
 
 	>div{
 		max-width:400px;
-		${theme.center}
+		${theme.centerY}
 		flex-direction:column;
 		background-color:#000000D0;
 		padding:50px 100px;
+		${theme.mobile}{
+			padding:25px 50px;
+		}
 		border-radius:20px;
+		max-height:100vh;
+		overflow-y:auto;
 	
 		>span{
 			display:block;
@@ -1271,6 +1282,9 @@ defineElm(GameWinMenu,scss`&{
 				background-color: ${hsv(.35,.7,.6)};
 				>.surface{
 					width:200px;
+					${theme.mobile}{
+						width:unset;
+					}
 					background-color: ${hsv(.35,.7,.8)};
 					white-space: nowrap;
 				}
@@ -1391,6 +1405,9 @@ defineElm(SettingsMenu,scss`&{
 		}
 		>div{
 			padding:50px 100px;
+			${theme.mobile}{
+				padding:25px 50px;
+			}
 			padding-top:20px;
 			overflow-y:auto;
 			box-sizing:border-box;
