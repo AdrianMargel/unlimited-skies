@@ -313,7 +313,9 @@ class RenderShader{
 			}
 		};
 
-		// let bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+		for(let i=0;i<10;i++){
+			let bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+		}
 
 		// gl.useProgram(this.programInfo.program);
 		// gl.bindFramebuffer(gl.FRAMEBUFFER, null);
