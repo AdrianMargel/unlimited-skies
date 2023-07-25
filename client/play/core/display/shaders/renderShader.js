@@ -1,28 +1,49 @@
+class DynamicTypedArray{
+	constructor(type,maxItems=10000){
+		this.type=type;
+		this.itemBytes=this.type.BYTES_PER_ELEMENT;
+		this.maxItems=maxItems;
+
+		this.array=new ArrayBuffer(this.maxItems*this.itemBytes);
+		this.view=new this.type(this.array);
+		this.length=0;
+	}
+	push(...items){
+		this.view.set(items,this.length);
+		this.length+=items.length;
+	}
+	reset(){
+		this.length=0;
+	}
+	getTypedArray(){
+		return new this.type(this.array,0,this.length);
+	}
+}
 class RenderShader{
 	constructor(){
-		this.position=[];
-		this.rotation=[];
-		this.texturePos=[];
-		this.textureSize=[];
-		this.objectPos=[];
-		this.objectSize=[];
-		this.objectAngle=[];
-		this.offset=[];
-		this.indices=[];
-		this.bufferInfo=null;
+		this.position=new DynamicTypedArray(Float32Array);
+		this.rotation=new DynamicTypedArray(Float32Array);
+		this.texturePos=new DynamicTypedArray(Float32Array);
+		this.textureSize=new DynamicTypedArray(Float32Array);
+		this.objectPos=new DynamicTypedArray(Float32Array);
+		this.objectSize=new DynamicTypedArray(Float32Array);
+		this.objectAngle=new DynamicTypedArray(Float32Array);
+		this.offset=new DynamicTypedArray(Float32Array);
+		this.indices=new DynamicTypedArray(Uint16Array);
+		// this.bufferInfo=null;
 		this.init();
 		this.prime();
 	}
 	prime(){
-		this.position.length=0;
-		this.rotation.length=0;
-		this.texturePos.length=0;
-		this.textureSize.length=0;
-		this.objectPos.length=0;
-		this.objectSize.length=0;
-		this.objectAngle.length=0;
-		this.offset.length=0;
-		this.indices.length=0;
+		this.position.reset();
+		this.rotation.reset();
+		this.texturePos.reset();
+		this.textureSize.reset();
+		this.objectPos.reset();
+		this.objectSize.reset();
+		this.objectAngle.reset();
+		this.offset.reset();
+		this.indices.reset();
 		this.count=0;
 	}
 	img(x,y,sizeX,sizeY,angle,imgX,imgY,imgSizeX,imgSizeY,flip,offsetX=0,offsetY=0){
@@ -278,54 +299,63 @@ class RenderShader{
 		let arrays={
 			position:{
 				numComponents:2,
-				data:this.position
+				data:this.position.getTypedArray()
 			},
 			rotation:{
 				numComponents:2,
-				data:this.rotation
+				data:this.rotation.getTypedArray()
 			},
 			texturePos:{
 				numComponents:2,
-				data:this.texturePos
+				data:this.texturePos.getTypedArray()
 			},
 			textureSize:{
 				numComponents:2,
-				data:this.textureSize
+				data:this.textureSize.getTypedArray()
 			},
 			objectPos:{
 				numComponents:2,
-				data:this.objectPos
+				data:this.objectPos.getTypedArray()
 			},
 			objectSize:{
 				numComponents:2,
-				data:this.objectSize
+				data:this.objectSize.getTypedArray()
 			},
 			offset:{
 				numComponents:2,
-				data:this.offset
+				data:this.offset.getTypedArray()
 			},
 			objectAngle:{
 				numComponents:1,
-				data:this.objectAngle
+				data:this.objectAngle.getTypedArray()
 			},
 			indices:{
 				numComponents:3,
-				data:this.indices
+				data:this.indices.getTypedArray()
 			}
 		};
 
-		for(let i=0;i<10;i++){
-			if(this.bufferInfo!=null){
-				this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays,this.bufferInfo);
-			}else{
-				this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
-			}
-		}
+		// let arrKeys=Object.keys(arrays);
 
-		// gl.useProgram(this.programInfo.program);
-		// gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-		// twgl.setBuffersAndAttributes(gl, this.programInfo, bufferInfo);
-		// twgl.setUniforms(this.programInfo, uniforms);
-		// twgl.drawBufferInfo(gl, bufferInfo);
+		// for(let i=0;i<10;i++){
+		// 	if(this.bufferInfo==null){
+		// 		console.log(...arrays.indices.data);
+		// 		this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+		// 		console.log(this.bufferInfo);
+		// 	}else{
+		// 		arrKeys.forEach(k=>{
+		// 			if(this.bufferInfo.attribs[k]!=null){
+		// 				twgl.setAttribInfoBufferFromArray(gl,this.bufferInfo.attribs[k],arrays[k]);
+		// 			}
+		// 		});
+		// 	}
+		// }
+		let bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+
+		gl.useProgram(this.programInfo.program);
+		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+		twgl.setBuffersAndAttributes(gl, this.programInfo, bufferInfo);
+		twgl.setUniforms(this.programInfo, uniforms);
+		twgl.drawBufferInfo(gl, bufferInfo);
 	}
 }
