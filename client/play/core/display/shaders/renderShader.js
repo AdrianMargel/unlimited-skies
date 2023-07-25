@@ -335,23 +335,19 @@ class RenderShader{
 			}
 		};
 
-		let arrKeys=Object.keys(arrays);
-
-		for(let i=0;i<10;i++){
-			if(this.bufferInfo==null){
-				this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
-			}else{
-				arrKeys.forEach(k=>{
-					if(k=="indices"){
-						setIndicesBufferFromTypedArray(gl,this.bufferInfo.indices,arrays[k].data);
-						this.bufferInfo.numElements=arrays[k].data.length;
-					}else{
-						twgl.setAttribInfoBufferFromArray(gl,this.bufferInfo.attribs[k],arrays[k].data);
-					}
-				});
-			}
+		if(this.bufferInfo==null){
+			this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+		}else{
+			let arrKeys=Object.keys(arrays);
+			arrKeys.forEach(k=>{
+				if(k=="indices"){
+					setIndicesBufferFromTypedArray(gl,this.bufferInfo.indices,arrays[k].data);
+					this.bufferInfo.numElements=arrays[k].data.length;
+				}else{
+					twgl.setAttribInfoBufferFromArray(gl,this.bufferInfo.attribs[k],arrays[k].data);
+				}
+			});
 		}
-		// let bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
 
 		gl.useProgram(this.programInfo.program);
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
