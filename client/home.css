@@ -1,20 +1,35 @@
 body{
 	background-color: white;
+	font-family: 'Nunito', sans-serif;
+	color:white;
+	position: relative;
 	display:flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-family: 'Nunito', sans-serif;
+}
+body>.background{
+	position: absolute;
+	inset:0;
 	background-image: url("img/background.jpg");
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	color:white;
+	filter:blur(4px);
+}
+body>.content{
+	display:flex;
+	justify-content: center;
+	align-items: stretch;
+	flex-direction: column;
+	position: relative;
+	padding-bottom: 40px;
 }
 body>div>.card{
 	max-width: 800px;
 	padding:0 20px;
 	margin:50px 20px;
+	margin-bottom: 0;
 	padding: 20px;
 	border-radius: 20px;
 	background-color: #00000080;
@@ -23,6 +38,19 @@ p{
 	font-size:20px;
 	margin:20px 0;
 	text-align: center;
+	line-height: 1.25em;
+}
+b{
+	font-weight: 900;
+	font-size: 1.1em;
+}
+.warning{
+	border-radius: 10px;
+	padding:10px;
+	border:4px dashed #cc5151ff;
+}
+li{
+	font-size:20px;
 }
 h1{
 	display:none;
@@ -43,11 +71,50 @@ h2{
 button{
 	background: none;
 }
-.play{
+.playOptions{
+	max-width: 880px;
 	display:flex;
 	justify-content: center;
+	flex-wrap: wrap-reverse;
+}
+.play{
+	min-width: 250px;
+	max-width: 400px;
+	flex-basis: 0;
+	flex-grow:1;
+	border:4px solid black;
+	border-radius: 20px;
+	margin:0 20px;
+	margin-top:40px;
+	padding:10px;
+	box-sizing: border-box;
+}
+.play>div{
+	padding:10px;
+	padding-bottom: 50px;
+	border-radius: 10px;
+	background-color: #00000080;
+	position: relative;
+	display: flex;
 	align-items: center;
 	flex-direction: column;
+}
+.play .title{
+	font-family: 'Fredoka One', sans-serif;
+	font-size:40px;
+	position: absolute;
+	top:-50px;
+	padding:5px 20px;
+	border-radius: 100px;
+	background-color: #000000;
+}
+.play ul{
+	margin-top:40px;
+	height:100px;
+}
+.play ul>li{
+	margin:0;
+	margin-bottom: 10px;
 }
 .buttonClickable{
 	margin-top:20px;

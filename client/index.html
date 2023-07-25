@@ -13,7 +13,8 @@
 	<link rel="stylesheet" href="home.css">
 </head>
 <body>
-	<div>
+	<div class="background"></div>
+	<div class="content">
 		<h1>Unlimited Skies</h1>
 		<div class="titleImg">
 			<img src="img/logo.png" alt="Unlimited Skies"/>
@@ -25,22 +26,46 @@
 
 			<p>If you're bored or looking for something new, why not give this free game a try?</p>
 
-			<p>This game is playable on mobile. However, it may be laggy on some devices. If the game does not run, make sure you are running the latest version of Firefox or Chrome.</p>
+			<p>This game is playable on mobile. However, it may be laggy on some devices.</p>
+			
+			<p class="warning"><b>If the game does not run, make sure you are running the latest version of Firefox or Chrome.</b></p>
 		</div>
-		<div class="play">
-			<img src="img/plane.png" alt="Plane"/>
-			<button
-				class="buttonClickable"
-				onClick="javascript:window.location.href='/play/'"
-			><div class="surface">PLAY</div></button>
+		<div class="playOptions">
+			<div class="play">
+				<div>
+					<p class="title">Desktop</p>
+					<ul>
+						<li>- The full version of the game</li>
+					</ul>
+					<img src="img/plane.png" alt="Plane"/>
+					<button
+						class="buttonClickable"
+						onClick="javascript:window.location.href='/play/'"
+					><div class="surface">PLAY</div></button>
+				</div>
+			</div>
+			<div class="play">
+				<div>
+					<p class="title">Mobile</p>
+					<ul>
+						<li>- Fewer but harder enemies</li>
+						<li>- No cloud trails</li>
+					</ul>
+					<img src="img/plane.png" alt="Plane"/>
+					<button
+						class="buttonClickable"
+						onClick="javascript:window.location.href='/mobile/'"
+					><div class="surface">PLAY</div></button>
+				</div>
+			</div>
 		</div>
 		<div class="card">
-			<h2>Acknowledgements</h2>
+			<h2>About</h2>
 			<p>
-			Fonts from <a href="https://fonts.google.com/">Google Fonts</a><br>
-			Icons from <a href="https://fontawesome.com/">Font Awesome</a><br>
-			Music from <a href="https://www.waterflame.com/">Water Flame</a><br>
-			Nyan cat song from <a href="https://aidn.jp/">Daniwell</a>
+			Fonts from<br><a href="https://fonts.google.com/">Google Fonts</a><br><br>
+			Icons from<br><a href="https://fontawesome.com/">Font Awesome</a><br><br>
+			Music from<br><a href="https://www.waterflame.com/">Water Flame</a><br><br>
+			Nyan cat song from<br><a href="https://aidn.jp/">Daniwell</a>
 			</p>
 			<p>Please report any issues or feedback <a href="https://github.com/AdrianMargel/unlimited-skies/issues">here</a>. Thanks.</p>
 		</div>

@@ -5,8 +5,6 @@ TODO:
 -initial music shuffling?
 	-don't load music until it is needed?
 
--nicer landing page + mobile option
-
 -particles variable framerate
 
 -tracking
