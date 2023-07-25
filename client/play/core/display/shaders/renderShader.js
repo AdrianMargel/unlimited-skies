@@ -350,12 +350,12 @@ class RenderShader{
 		// 		});
 		// 	}
 		// }
-		let bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+		// let bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
 
-		gl.useProgram(this.programInfo.program);
-		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-		twgl.setBuffersAndAttributes(gl, this.programInfo, bufferInfo);
-		twgl.setUniforms(this.programInfo, uniforms);
-		twgl.drawBufferInfo(gl, bufferInfo);
+		// gl.useProgram(this.programInfo.program);
+		// gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+		// twgl.setBuffersAndAttributes(gl, this.programInfo, bufferInfo);
+		// twgl.setUniforms(this.programInfo, uniforms);
+		// twgl.drawBufferInfo(gl, bufferInfo);
 	}
 }
