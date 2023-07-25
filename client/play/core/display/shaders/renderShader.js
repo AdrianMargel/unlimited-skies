@@ -9,6 +9,7 @@ class RenderShader{
 		this.objectAngle=[];
 		this.offset=[];
 		this.indices=[];
+		this.bufferInfo=null;
 		this.init();
 		this.prime();
 	}
@@ -314,7 +315,11 @@ class RenderShader{
 		};
 
 		for(let i=0;i<10;i++){
-			let bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+			if(this.bufferInfo!=null){
+				this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays,this.bufferInfo);
+			}else{
+				this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+			}
 		}
 
 		// gl.useProgram(this.programInfo.program);
