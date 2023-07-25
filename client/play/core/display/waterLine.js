@@ -6,7 +6,6 @@ class WaterLine{
 		this.lineVelo=Array(100).fill(0);
 	}
 	run(timeStep){
-		return;
 		if(timeStep>1){
 			let steps=Math.ceil(timeStep);
 			let subTimeStep=timeStep/steps;
@@ -32,7 +31,6 @@ class WaterLine{
 		});
 	}
 	wave(x,y,width,strength){
-		return;
 		let vec=loopVec(Vec(x,y),gameRunner.getPlayer().getPos());
 		x=vec.x;
 		y=vec.y;
@@ -52,7 +50,6 @@ class WaterLine{
 		}
 	}
 	forceWave(x,y,width,strength){
-		return;
 		let vec=loopVec(Vec(x,y),gameRunner.getPlayer().getPos());
 		x=vec.x;
 		y=vec.y;

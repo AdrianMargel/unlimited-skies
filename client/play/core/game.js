@@ -420,7 +420,7 @@ class Game{
 		// this.displayGrid(disp,ctrl);
 		// this.displayCloudGrid(disp,ctrl);
 		// this.displaySize(disp,ctrl);
-		this.displayHitboxes(disp,ctrl,timeStep);
+		// this.displayHitboxes(disp,ctrl,timeStep);
 		// this.displayVeloHitboxes(disp,ctrl,timeStep);
 		// this.displayDistanceClosest(disp,ctrl);
 		// this.displayDistanceFields(disp,ctrl);
@@ -439,12 +439,7 @@ class Game{
 		// this.waterLine.waterline.forEach((w,i)=>disp.circle2(i*this.waterLine.waterSize,w,10,10));
 
 		if(sharedTextures.isLoaded()){
-			// let clouds=this.getClouds();
-			if(!this.started){
-				this.cloudSave=this.getClouds();
-			}
-			let clouds=this.cloudSave;
-			this.started=this.started??true;
+			let clouds=this.getClouds();
 
 			sharedTextures.run(disp.cam,this.waterLine.line,this.shadowLine.line,clouds);
 			// cloudPaint.run(disp.cam,clouds,this.time,this.screenStart);

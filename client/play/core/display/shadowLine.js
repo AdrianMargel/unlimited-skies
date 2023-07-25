@@ -5,11 +5,9 @@ class ShadowLine{
 		this.line=Array(10000);
 	}
 	resetShadow(){
-		return;
 		this.line.fill(1000000);
 	}
 	shadow(x,y,width){
-		return;
 		let vec=loopVec(Vec(x,y),gameRunner.getPlayer().getPos());
 		x=vec.x;
 		y=vec.y;

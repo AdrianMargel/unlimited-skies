@@ -32,7 +32,6 @@ class CloudMap{
 		this.topY=this.cloudDims.y*this.cloudSize;
 	}
 	cloud(x,y,r,g,b,a){
-		return;
 		if(y>0||y<-this.topY){
 			return;
 		}
