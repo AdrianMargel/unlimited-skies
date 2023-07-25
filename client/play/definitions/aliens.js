@@ -185,12 +185,15 @@ class Alien extends Entity{
 		this.displayOffset=this.offset.cln();
 
 		this.hasBubbles=false;
+		this.scaleHealth=true;
 
 		this.head=null;
 	}
 	init(){
-		this.maxHealth*=gameRunner.alienHealthScale;
-		this.health*=gameRunner.alienHealthScale;
+		if(this.scaleHealth){
+			this.maxHealth*=gameRunner.alienHealthScale;
+			this.health*=gameRunner.alienHealthScale;
+		}
 		this.randomizeCooldown();
 		return super.init();
 	}
@@ -796,6 +799,8 @@ class BossSpike extends Alien{
 		this.spinBase=0.025;
 		this.spinResist=.99;
 		this.spinSpeed=.005;
+
+		this.scaleHealth=false;
 	}
 	shoot(bulletA,timeStep){
 		this.spin+=this.spinSpeed*timeStep;
@@ -957,6 +962,8 @@ class BossDrill extends Alien{
 		this.eyeSpin1=PI/2+0.5;
 		this.eyeSpin2=PI/2+0.1;
 		this.hitBoxPoly=[Vec(-60,-150),Vec(-60,150),Vec(200,0)];
+
+		this.scaleHealth=false;
 	}
 	runSpecial(arrays){
 		let a2=arrays["planes"];
@@ -1350,6 +1357,8 @@ class BossAxe extends Alien{
 
 		this.damage=20;
 		this.spin=0.025;
+
+		this.scaleHealth=false;
 	}
 	runCustom(timeStep){
 		super.runCustom(timeStep);
@@ -1512,6 +1521,8 @@ class BossYarn extends Alien{
 		this.cooldownMax=5;
 		this.bulletDamage=5;
 		this.bulletSize=12;
+
+		this.scaleHealth=false;
 	}
 	runCustom(timeStep){
 		super.runCustom(timeStep);
@@ -1658,6 +1669,8 @@ class Mothership extends Alien{
 		this.hitboxOffset=Vec(0,45).scl(3);
 		this.hitboxBottom=25*3;
 		this.tailSize=Vec(20,200).scl(3);
+		
+		this.scaleHealth=false;
 		
 		this.calcHitbox();
 	}
