@@ -1,20 +1,27 @@
 class BulletShader{
 	constructor(){
+		this.position=new DynamicTypedArray(Float32Array);
+		this.objectPos=new DynamicTypedArray(Float32Array);
+		this.objectVelo=new DynamicTypedArray(Float32Array);
+		this.objectSize=new DynamicTypedArray(Float32Array);
+		this.objectColor=new DynamicTypedArray(Float32Array);
+		this.objectAge=new DynamicTypedArray(Float32Array);
+		this.indices=new DynamicTypedArray(Uint16Array);
+		this.bufferInfo=null;
 		this.init();
 		this.prime();
 	}
 	prime(){
-		this.position=[];
-		this.objectPos=[];
-		this.objectVelo=[];
-		this.objectSize=[];
-		this.objectColor=[];
-		this.objectAge=[];
-		this.indices=[];
+		this.position.reset();
+		this.objectPos.reset();
+		this.objectVelo.reset();
+		this.objectSize.reset();
+		this.objectColor.reset();
+		this.objectAge.reset();
+		this.indices.reset();
 		this.count=0;
 	}
 	line(x,y,size,veloX,veloY,age,colorR,colorG,colorB){
-		return;
 		this.position.push(
 			1, 1,
 			1, -1,
@@ -210,40 +217,52 @@ class BulletShader{
 		let arrays={
 			position:{
 				numComponents:2,
-				data:this.position
+				data:this.position.getTypedArray()
 			},
 			objectPos:{
 				numComponents:2,
-				data:this.objectPos
+				data:this.objectPos.getTypedArray()
 			},
 			objectVelo:{
 				numComponents:2,
-				data:this.objectVelo
+				data:this.objectVelo.getTypedArray()
 			},
 			objectSize:{
 				numComponents:1,
-				data:this.objectSize
+				data:this.objectSize.getTypedArray()
 			},
 			objectColor:{
 				numComponents:3,
-				data:this.objectColor
+				data:this.objectColor.getTypedArray()
 			},
 			objectAge:{
 				numComponents:1,
-				data:this.objectAge
+				data:this.objectAge.getTypedArray()
 			},
 			indices:{
 				numComponents:3,
-				data:this.indices
+				data:this.indices.getTypedArray()
 			}
 		};
 
-		let bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+		if(this.bufferInfo==null){
+			this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+		}else{
+			let arrKeys=Object.keys(arrays);
+			arrKeys.forEach(k=>{
+				if(k=="indices"){
+					setIndicesBufferFromTypedArray(gl,this.bufferInfo.indices,arrays[k].data);
+					this.bufferInfo.numElements=arrays[k].data.length;
+				}else{
+					twgl.setAttribInfoBufferFromArray(gl,this.bufferInfo.attribs[k],arrays[k].data);
+				}
+			});
+		}
 
 		gl.useProgram(this.programInfo.program);
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-		twgl.setBuffersAndAttributes(gl, this.programInfo, bufferInfo);
+		twgl.setBuffersAndAttributes(gl, this.programInfo, this.bufferInfo);
 		twgl.setUniforms(this.programInfo, uniforms);
-		twgl.drawBufferInfo(gl, bufferInfo);
+		twgl.drawBufferInfo(gl, this.bufferInfo);
 	}
 }

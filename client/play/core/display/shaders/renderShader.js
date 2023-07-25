@@ -1,24 +1,3 @@
-class DynamicTypedArray{
-	constructor(type,maxItems=10000){
-		this.type=type;
-		this.itemBytes=this.type.BYTES_PER_ELEMENT;
-		this.maxItems=maxItems;
-
-		this.array=new ArrayBuffer(this.maxItems*this.itemBytes);
-		this.view=new this.type(this.array);
-		this.length=0;
-	}
-	push(...items){
-		this.view.set(items,this.length);
-		this.length+=items.length;
-	}
-	reset(){
-		this.length=0;
-	}
-	getTypedArray(){
-		return new this.type(this.array,0,this.length);
-	}
-}
 class RenderShader{
 	constructor(){
 		this.position=new DynamicTypedArray(Float32Array);

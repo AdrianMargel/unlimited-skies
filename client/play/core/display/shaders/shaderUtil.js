@@ -1,4 +1,26 @@
 
+class DynamicTypedArray{
+	constructor(type,maxItems=10000){
+		this.type=type;
+		this.itemBytes=this.type.BYTES_PER_ELEMENT;
+		this.maxItems=maxItems;
+
+		this.array=new ArrayBuffer(this.maxItems*this.itemBytes);
+		this.view=new this.type(this.array);
+		this.length=0;
+	}
+	push(...items){
+		this.view.set(items,this.length);
+		this.length+=items.length;
+	}
+	reset(){
+		this.length=0;
+	}
+	getTypedArray(){
+		return new this.type(this.array,0,this.length);
+	}
+}
+
 function glsl(strings,...keys){
 	return strings[0]+keys.map((k,i)=>k+strings[i+1]).join("");
 }
