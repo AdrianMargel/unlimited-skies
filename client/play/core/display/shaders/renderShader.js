@@ -30,7 +30,7 @@ class RenderShader{
 		this.objectAngle=new DynamicTypedArray(Float32Array);
 		this.offset=new DynamicTypedArray(Float32Array);
 		this.indices=new DynamicTypedArray(Uint16Array);
-		// this.bufferInfo=null;
+		this.bufferInfo=null;
 		this.init();
 		this.prime();
 	}
@@ -335,27 +335,28 @@ class RenderShader{
 			}
 		};
 
-		// let arrKeys=Object.keys(arrays);
+		let arrKeys=Object.keys(arrays);
 
-		// for(let i=0;i<10;i++){
-		// 	if(this.bufferInfo==null){
-		// 		console.log(...arrays.indices.data);
-		// 		this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
-		// 		console.log(this.bufferInfo);
-		// 	}else{
-		// 		arrKeys.forEach(k=>{
-		// 			if(this.bufferInfo.attribs[k]!=null){
-		// 				twgl.setAttribInfoBufferFromArray(gl,this.bufferInfo.attribs[k],arrays[k]);
-		// 			}
-		// 		});
-		// 	}
-		// }
+		for(let i=0;i<10;i++){
+			if(this.bufferInfo==null){
+				this.bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
+			}else{
+				arrKeys.forEach(k=>{
+					if(k=="indices"){
+						setIndicesBufferFromTypedArray(gl,this.bufferInfo.indices,arrays[k].data);
+						this.bufferInfo.numElements=arrays[k].data.length;
+					}else{
+						twgl.setAttribInfoBufferFromArray(gl,this.bufferInfo.attribs[k],arrays[k].data);
+					}
+				});
+			}
+		}
 		// let bufferInfo=twgl.createBufferInfoFromArrays(gl,arrays);
 
-		// gl.useProgram(this.programInfo.program);
-		// gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-		// twgl.setBuffersAndAttributes(gl, this.programInfo, bufferInfo);
-		// twgl.setUniforms(this.programInfo, uniforms);
-		// twgl.drawBufferInfo(gl, bufferInfo);
+		gl.useProgram(this.programInfo.program);
+		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+		twgl.setBuffersAndAttributes(gl, this.programInfo, this.bufferInfo);
+		twgl.setUniforms(this.programInfo, uniforms);
+		twgl.drawBufferInfo(gl, this.bufferInfo);
 	}
 }

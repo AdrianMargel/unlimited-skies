@@ -2,6 +2,14 @@
 function glsl(strings,...keys){
 	return strings[0]+keys.map((k,i)=>k+strings[i+1]).join("");
 }
+
+const ELEMENT_ARRAY_BUFFER=0x8893;
+const STATIC_DRAW=0x88e4;
+function setIndicesBufferFromTypedArray(gl,buffer,array,drawType) {
+	gl.bindBuffer(ELEMENT_ARRAY_BUFFER, buffer);
+	gl.bufferData(ELEMENT_ARRAY_BUFFER, array, drawType || STATIC_DRAW);
+}
+
 function boxArray(arr,components=1,w=0){
 	let length=arr.length/components;
 
