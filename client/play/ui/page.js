@@ -1,3 +1,70 @@
+function loadByKey(key){
+	try{
+		return JSON.parse(localStorage.getItem(key)??"null");
+	}catch(e){
+		return null;
+	}
+}
+function saveByKey(key,data){
+	localStorage.setItem(key,JSON.stringify(data));
+}
+function loadProgress(output){
+	if(isSandboxMode){
+		return output;
+	}
+	let loaded=loadByKey("progress");
+	if(loaded==null){
+		return output;
+	}
+	
+	if(loaded.coins!=null){
+		output.coins=loaded.coins;
+	}
+	if(loaded.unlocks!=null){
+		planeSelection.forEach((plane,i)=>{
+			let loadedPlane=loaded.unlocks[plane.id];
+			if(loadedPlane!=null){
+				let unlockedLevel=loadedPlane.unlockedLevel;
+				let selectedLevel=loadedPlane.selectedLevel;
+				let hidden=loadedPlane.hidden??false;
+				output.unlocks[i]={
+					unlockedLevel,
+					selectedLevel,
+					hidden
+				};
+			}
+		});
+	}
+	return output;
+}
+function saveProgress(){
+	if(isSandboxMode){
+		return;
+	}
+	let toSave=loadByKey("progress")??{};
+	if(typeof toSave.unlocks!="object"||Array.isArray(toSave.unlocks)){
+		toSave.unlocks={};
+	}
+
+	toSave.coins=playerProgress.coins.data;
+	planeSelection.forEach((plane,i)=>{
+		let planeUnlock=playerProgress.unlocks[i];
+		toSave.unlocks[plane.id]={
+			unlockedLevel:planeUnlock.unlockedLevel.data,
+			selectedLevel:planeUnlock.selectedLevel.data,
+			hidden:planeUnlock.hidden?.data??false
+		}
+	});
+
+	saveByKey("progress",toSave);
+}
+function clearProgress(){
+	if(isSandboxMode){
+		return;
+	}
+	localStorage.removeItem("progress");
+}
+
 let planeSelection=[
 	{
 		id:"jet",
@@ -128,58 +195,7 @@ let planeSelection=[
 		}
 	},
 ];
-function loadByKey(key){
-	try{
-		return JSON.parse(localStorage.getItem(key)??"null");
-	}catch(e){
-		return null;
-	}
-}
-function saveByKey(key,data){
-	localStorage.setItem(key,JSON.stringify(data));
-}
-function loadProgress(){
-	if(isSandboxMode){
-		return;
-	}
-	return loadByKey("progress");
-}
-function saveProgress(){
-	if(isSandboxMode){
-		return;
-	}
-	function stripData(obj){
-		if(typeof obj!="object"){
-			return obj;
-		}
-		if(Array.isArray(obj)){
-			return obj.map(a=>stripData(a));
-		}else{
-			let keys=Object.keys(obj);
-			let cln={};
-			keys.forEach(k=>{
-				if(k=="data"){
-					cln=stripData(obj[k]);
-				}else{
-					cln[k]=stripData(obj[k]);
-				}
-			});
-			return cln;
-		}
-	}
-	saveByKey("progress",stripData(playerProgress));
-}
-function clearProgress(){
-	if(isSandboxMode){
-		return;
-	}
-	localStorage.removeItem("progress");
-}
-
-let urlParams=new URLSearchParams(window.location.search);
-let isSandboxMode=urlParams.get('sandbox')!=null;
-let playerProgress=loadProgress();
-playerProgress=bind(playerProgress??{
+let playerProgress={
 	coins:0,
 	unlocks:[
 		{//jet
@@ -232,7 +248,11 @@ playerProgress=bind(playerProgress??{
 			selectedLevel:1
 		},
 	],
-});
+};
+let urlParams=new URLSearchParams(window.location.search);
+let isSandboxMode=urlParams.get('sandbox')!=null;
+playerProgress=bind(loadProgress(playerProgress));
+
 if(isSandboxMode){
 	playerProgress.coins.data+=1000000000000;
 }
