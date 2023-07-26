@@ -191,6 +191,7 @@ class MusicManager{
 		this.volumeBase=0;
 		this.volume=0;
 		this.muted=true;
+		this.queueNext=true;
 
 		this.audioPlayer=document.createElement("audio");
 		this.audioPlayer.addEventListener("ended",()=>this.nextSong());
@@ -209,28 +210,25 @@ class MusicManager{
 			"Supra Zone.mp3",
 			"Backbonebreaks.mp3",
 		];
+		//note that this is a reference, not a copy
 		this.songsBackup=this.songs;
+	}
+	shuffle(){
+		shuffle(this.songs);
 	}
 	forcePlaylist(urls){
 		this.songs=urls;
 		this.nextSong();
-		if(this.muted){
-			this.audioPlayer.pause();
-		}
 	}
 	restorePlaylist(){
 		this.songs=this.songsBackup;
 		this.nextSong();
-		if(this.muted){
-			this.audioPlayer.pause();
-		}
-	}
-	
-	start(){
-		this.nextSong();
-		this.mute();
 	}
 	nextSong(){
+		if(this.muted){
+			this.queueNext=true;
+			return;
+		}
 		let song=this.songs[0];
 		this.audioPlayer.setAttribute("src","/play/music/"+song);
 		this.audioPlayer.currentTime=0;
@@ -258,7 +256,12 @@ class MusicManager{
 	}
 	unmute(){
 		this.muted=false;
-		this.audioPlayer.play();
+		if(this.queueNext){
+			this.nextSong();
+			this.queueNext=false;
+		}else{
+			this.audioPlayer.play();
+		}
 
 		this.volume=this.volumeBase;
 		this.audioPlayer.volume=this.volume;

@@ -90,6 +90,16 @@ function binarySearch(arr, el, compare_fn) {
     }
     return ~m;
 }
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
 function bezierPoint(t, p0, p1, p2, p3){
 	let cX = 3 * (p1.x - p0.x),
 		bX = 3 * (p2.x - p1.x) - cX,

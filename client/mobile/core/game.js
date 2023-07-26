@@ -104,7 +104,6 @@ class Game{
 		// this.spawnPlayer(HotAirBalloon,4);
 
 		sharedTextures.init(this.cloudMap);
-		this.music.start();
 	}
 	spawnPlayer(spawnClass,level,isSpecial=false,rainbowExplosions=false){
 		if(!this.canControl){

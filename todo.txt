@@ -1,10 +1,10 @@
 TODO:
 -initial loading bar?
 -initial music shuffling?
-	-don't load music until it is needed?
 
 -particles variable framerate
 
+-caching
 -tracking
 -email list signup
 
