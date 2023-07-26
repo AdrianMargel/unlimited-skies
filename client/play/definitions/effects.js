@@ -169,7 +169,7 @@ class EffectManager{
 			),true);
 		}
 	}
-	thrust(x,y,vX,vY,strength){
+	thrust(x,y,vX,vY,strength,timeStep){
 		let vec=loopVec(Vec(x,y),this.game.getPlayer().getPos());
 		x=vec.x;
 		y=vec.y;
@@ -178,11 +178,11 @@ class EffectManager{
 			return;
 		}
 		if(!this.game.isUnderwater(x,y)){
-			let n=Math.min(Math.ceil(Vec(vX,vY).mag()/20),20);
+			let n=Math.min(Math.ceil(Vec(vX,vY).mag()*timeStep/20),20);
 			for(let i=0;i<n;i++){
 				let vScale=(i+Math.random())/n;
 				let v=Vec(vX,vY);
-				v.scl(vScale);
+				v.scl(vScale*timeStep);
 
 				let sizeScale=Math.sqrt(strength);
 				let size=50*sizeScale;

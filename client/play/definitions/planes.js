@@ -100,6 +100,7 @@ class Plane extends Entity{
 				}
 			}
 		}
+		let boostAmount=this.thrust;
 		this.thrustActive=false;
 		this.thrust=0;
 		if(this.thrustPotential<this.thrustPotLim){
@@ -133,6 +134,9 @@ class Plane extends Entity{
 		gameRunner.wave(this.pos.x,this.pos.y,100,this.velo.mag()/20*timeStep);
 		
 		this.move(timeStep);
+		if(boostAmount>0){
+			this.boostEffect(boostAmount,timeStep);
+		}
 	}
 	runWater(timeStep){
 		super.runWater(timeStep);
@@ -159,7 +163,6 @@ class Plane extends Entity{
 		bPower*=this.heightEfficiency();
 		this.thrust+=bPower;
 		this.thrustPotential-=bPower;
-		this.boostEffect(bPower,timeStep);
 	}
 	boostEffect(strength,timeStep){
 	}
@@ -243,10 +246,10 @@ class Jet extends Plane{
 	boostEffect(strength,timeStep){
 		let hE=this.heightEfficiency();
 		let offset=VecA(-this.displaySize.x/2,this.angle);
-		offset.add(this.pos).add(this.velo);
+		offset.add(this.pos);
 
 		gameRunner.thrust(offset.x,offset.y,this.velo.x,this.velo.y,
-			strength
+			strength/timeStep,timeStep
 		);
 		let m=this.velo.mag()*timeStep;
 		for(let v=0;v<m;v+=20){
@@ -375,10 +378,10 @@ class Raptor extends Plane{
 	boostEffect(strength,timeStep){
 		let hE=this.heightEfficiency();
 		let offset=VecA(-this.displaySize.x/2,this.angle);
-		offset.add(this.pos).add(this.velo);
+		offset.add(this.pos);
 
 		gameRunner.thrust(offset.x,offset.y,this.velo.x,this.velo.y,
-			strength
+			strength/timeStep,timeStep
 		);
 		let m=this.velo.mag()*timeStep;
 		for(let v=0;v<m;v+=20){
@@ -773,13 +776,13 @@ class BlackBird extends Plane{
 		}
 		offset1.rot(this.angle);
 		offset2.rot(this.angle);
-		offset1.add(this.pos).add(this.velo);
-		offset2.add(this.pos).add(this.velo);
+		offset1.add(this.pos);
+		offset2.add(this.pos);
 		gameRunner.thrust(offset1.x,offset1.y,this.velo.x,this.velo.y,
-			strength
+			strength/timeStep,timeStep
 		);
 		gameRunner.thrust(offset2.x,offset2.y,this.velo.x,this.velo.y,
-			strength
+			strength/timeStep,timeStep
 		);
 		let m=this.velo.mag()*timeStep;
 		for(let v=0;v<m;v+=20){
@@ -869,10 +872,10 @@ class BuzzBomb extends Plane{
 			offset.y*=-1;
 		}
 		offset.rot(this.angle);
-		offset.add(this.pos).add(this.velo);
+		offset.add(this.pos);
 
 		gameRunner.thrust(offset.x,offset.y,this.velo.x,this.velo.y,
-			strength*0.3/timeStep
+			strength*0.3/timeStep,timeStep
 		);
 		let m=this.velo.mag()*timeStep;
 		for(let v=0;v<m;v+=20){
@@ -1433,10 +1436,10 @@ class Triebflugel extends Plane{
 				propP.y*=-1;
 				engineP.y*=-1;
 			}
-			let engineEnd=engineP.cln().add(Vec(-this.engineSize.x/2,0)).rot(this.angle).add(this.pos).add(this.velo);
+			let engineEnd=engineP.cln().add(Vec(-this.engineSize.x/2,0)).rot(this.angle).add(this.pos);
 
 			gameRunner.thrust(engineEnd.x,engineEnd.y,this.velo.x,this.velo.y,
-				strength
+				strength/timeStep,timeStep
 			);
 		}
 		let m=this.velo.mag()*timeStep;
@@ -1634,7 +1637,7 @@ class Rocket extends Plane{
 			this.thrust+=bPower;
 			this.thrustPotential-=bPower;
 
-			gameRunner.thrust(backP.x,backP.y,this.velo.x,this.velo.y,5);
+			gameRunner.thrust(backP.x,backP.y,this.velo.x,this.velo.y,5,timeStep);
 
 			let m=this.velo.mag()*timeStep;
 			for(let v=0;v<m;v+=20){
@@ -1735,8 +1738,12 @@ class Helicopter extends Plane{
 		}else{
 			this.velo.add(VecA(this.thrust,this.angle-PI/2));
 		}
+		let boostAmount=this.thrust;
 		this.thrust=0;
 		super.runCustom(timeStep);
+		if(boostAmount>0){
+			this.boostEffect(boostAmount,timeStep);
+		}
 
 		this.propSpeed*=0.95**timeStep;
 		this.propTime+=this.propSpeed*timeStep;
@@ -2919,8 +2926,14 @@ class Zeppelin extends Plane{
 	}
 	runCustom(timeStep){
 		this.velo.add(VecA(this.thrust,this.lookAngle));
+		
+		let boostAmount=this.thrust;
 		this.thrust=0;
 		super.runCustom(timeStep);
+		if(boostAmount>0){
+			this.boostEffect(boostAmount,timeStep);
+		}
+
 		this.velo.add(this.lift.cln().scl(this.heightEfficiency()*timeStep));
 		this.propSpeed*=0.9**timeStep;
 		this.propTime=(this.propTime+this.propSpeed*timeStep)%(this.propIdxs.length);
@@ -3468,9 +3481,9 @@ class PodRacer extends Plane{
 		let hE=this.heightEfficiency();
 		for(let i=0;i<this.thrusterPosList.length;i++){
 			let tv=this.thrusterVeloList[i];
-			let tp=this.thrusterPosList[i].cln().add(VecA(-this.engine1Size.x/2,this.angle)).add(tv);
+			let tp=this.thrusterPosList[i].cln().add(VecA(-this.engine1Size.x/2,this.angle));
 			gameRunner.thrust(tp.x,tp.y,this.velo.x,this.velo.y,
-				strength*.15
+				strength*.15/timeStep,timeStep
 			);
 			let m=tv.mag()*timeStep;
 			for(let v=0;v<m;v+=20){
@@ -3536,8 +3549,12 @@ class PodRacer extends Plane{
 		}
 
 		this.velo.scl(this.podResistance**timeStep);
+		let boostAmount=this.thrust;
 		this.thrust=0;
 		super.runCustom(timeStep);
+		if(boostAmount>0){
+			this.boostEffect(boostAmount,timeStep);
+		}
 
 		let flip=nrmAngPI(this.angle+PI/2)<0;
 		let ropePos=this.ropeOffset.cln();

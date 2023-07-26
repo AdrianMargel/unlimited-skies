@@ -1091,13 +1091,13 @@ class BossDrill extends Alien{
 		let offset2=VecA(20*2,this.angle+PI/2);
 
 		gameRunner.thrust(offset.x,offset.y,this.velo.x,this.velo.y,
-			(Math.random()+0.5)*timeStep
+			(Math.random()+0.5)*timeStep,timeStep
 		);
 		gameRunner.thrust(offset.x+offset2.x,offset.y+offset2.y,this.velo.x,this.velo.y,
-			(Math.random()+0.5)*timeStep
+			(Math.random()+0.5)*timeStep,timeStep
 		);
 		gameRunner.thrust(offset.x-offset2.x,offset.y-offset2.y,this.velo.x,this.velo.y,
-			(Math.random()+0.5)*timeStep
+			(Math.random()+0.5)*timeStep,timeStep
 		);
 		let m=this.velo.mag()*timeStep;
 		let cloudCol=RGB(255,255,255,50).scl(255);

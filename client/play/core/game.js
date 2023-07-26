@@ -378,8 +378,8 @@ class Game{
 	wreck(x,y,vX,vY,strength){
 		return this.effects.wreck(x,y,vX,vY,strength);
 	}
-	thrust(x,y,vX,vY,strength){
-		return this.effects.thrust(x,y,vX,vY,strength);
+	thrust(x,y,vX,vY,strength,timeStep){
+		return this.effects.thrust(x,y,vX,vY,strength,timeStep);
 	}
 	//#endregion
 	
