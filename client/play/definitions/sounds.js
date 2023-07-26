@@ -243,6 +243,16 @@ class MusicManager{
 	setVolume(vol){
 		this.volumeBase=vol;
 		if(!this.muted){
+			if(vol==0){
+				this.audioPlayer.pause();
+			}else if(this.volume==0){
+				if(this.queueNext){
+					this.nextSong();
+					this.queueNext=false;
+				}else{
+					this.audioPlayer.play();
+				}
+			}
 			this.volume=vol;
 			this.audioPlayer.volume=vol;
 		}
@@ -256,11 +266,13 @@ class MusicManager{
 	}
 	unmute(){
 		this.muted=false;
-		if(this.queueNext){
-			this.nextSong();
-			this.queueNext=false;
-		}else{
-			this.audioPlayer.play();
+		if(this.volumeBase!=0){
+			if(this.queueNext){
+				this.nextSong();
+				this.queueNext=false;
+			}else{
+				this.audioPlayer.play();
+			}
 		}
 
 		this.volume=this.volumeBase;
