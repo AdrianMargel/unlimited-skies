@@ -2,8 +2,6 @@ TODO:
 -initial loading bar?
 -initial music shuffling?
 
--particles variable framerate
-
 -caching
 -tracking
 -email list signup
