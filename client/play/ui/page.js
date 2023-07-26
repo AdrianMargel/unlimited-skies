@@ -458,6 +458,13 @@ class PlaneSelector extends CustomElm{
 				document.exitFullscreen();
 			}
 		};
+
+		{
+			let progress=this.getProgress(idx.data);
+			level.data=progress.selectedLevel.data;
+			spawnPlane();
+		}
+
 		let unlockPrice=bind(0);
 		let upgradePrice=bind(0);
 		let downgradePrice=bind(0);

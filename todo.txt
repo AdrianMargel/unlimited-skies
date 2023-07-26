@@ -1,7 +1,5 @@
 TODO:
 -initial loading bar?
--initially load the correct plane
-	-better saving to support updates/custom versions 
 -initial music shuffling?
 	-don't load music until it is needed?
 
