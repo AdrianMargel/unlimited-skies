@@ -66,6 +66,10 @@ function sleep(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+let showLoading=bind(true);
+function completeShaderLoad(){
+	showLoading.data=false;
+}
 let showPlaneSelector=bind(true);
 let showGameOver=bind(false);
 let showWin=bind(false);
@@ -91,6 +95,7 @@ musicLink();
 
 // Populate page html
 let uiBody=html`
+	${new LoadingBar(showLoading)}
 	${new TopDisplay(showPlaneSelector,waveNum,playerHealth,playerMaxHealth)}
 	${new PlaneSelector(showPlaneSelector,soundMuted)}
 	${new GameOverMenu(showGameOver,waveNum)}

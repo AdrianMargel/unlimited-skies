@@ -1465,3 +1465,78 @@ defineElm(SettingsMenu,scss`&{
 		}
 	}
 }`);
+class LoadingBar extends CustomElm{
+	constructor(show){
+		super();
+		show=bind(show);
+
+		let rot=bind(90);
+
+		this.rotAnim=animate((t,tDiff)=>rot.data+=tDiff*360,1,true);
+		this.rotAnim.start();
+
+		this.stopSub=link(()=>{
+			if(show.data){
+				this.rotAnim.start();
+			}else{
+				this.rotAnim.stop();
+			}
+		},show);
+		
+		this.attr("class",()=>show.data?"":"hidden")(show);
+		this.define(html`
+			<div class="spinner2" style=${attr(()=>"transform:rotate(-"+rot.data*.75+"deg);")(rot)}>
+				<div class="cover"></div>
+			</div>
+			<div class="spinner" style=${attr(()=>"transform:rotate("+rot.data+"deg);")(rot)}>
+				<div class="cover"></div>
+			</div>
+			<div class="text">
+				LOADING
+			</div>
+		`);
+	}
+}
+defineElm(LoadingBar,scss`&{
+	position:fixed;
+	z-index:100;
+	inset:0;
+	background-color:white;
+	${theme.center}
+	font-family: 'Fredoka One', sans-serif;
+	font-size:30px;
+	.spinner{
+		position: absolute;
+		width:100px;
+		height:100px;
+		border:3px solid black;
+		border-radius:100px;
+		${theme.center}
+		>.cover{
+			position:relative;
+			top:27.5px;
+			min-width:110px;
+			min-height:55px;
+			background-color:white;
+		}
+	}
+	.spinner2{
+		position: absolute;
+		width:160px;
+		height:160px;
+		border:4px solid black;
+		border-radius:150px;
+		${theme.center}
+		>.cover{
+			position:relative;
+			top:60px;
+			min-width:170px;
+			min-height:120px;
+			background-color:white;
+		}
+	}
+	>.text{
+		position:relative;
+		background-color:white;
+	}
+}`);

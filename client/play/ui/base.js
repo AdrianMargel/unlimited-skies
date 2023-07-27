@@ -94,7 +94,7 @@ class ReactiveHandler{
 	 * @returns If the subscription could be removed. False if the subscription doesn't exist.
 	 */
 	unSub(callback){
-		return this.subscriptions.remove(callback);
+		return this.subscriptions.delete(callback);
 	}
 	/**
 	 * A function to run anytime the value updates that will ensure all subscriptions are notified of the change.

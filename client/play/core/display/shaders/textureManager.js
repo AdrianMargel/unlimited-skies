@@ -73,6 +73,9 @@ class TextureManager{
 				height:img.height
 			};
 			this.loadCount--;
+			if(this.loadCount==0){
+				completeShaderLoad();
+			}
 		});
 	}
 	updateArrayTexture(name,boxedArr,internalFormat,reuseArrayType=null){
