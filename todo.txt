@@ -1,5 +1,4 @@
 TODO:
--initial loading bar?
 -initial music shuffling?
 
 -caching
