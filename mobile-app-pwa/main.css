@@ -1,0 +1,53 @@
+body{
+	overflow: hidden;
+	background-color:white;
+	font-family: 'Nunito', sans-serif;
+}
+#canvasContainer{
+	position: absolute;
+	top:0;
+	width: 100vw;
+	height: 100vh;
+}
+#c{
+	display: block;
+	position: absolute;
+	top:0;
+	width: 100vw;
+	height: 100vh;
+}
+canvas{
+	image-rendering: pixelated;
+}
+button{
+	user-select: none;
+}
+.hidden{
+	display:none;
+}
+
+
+.pause{
+	background-color:#00000050;
+	border:1px solid white;
+	width:40px;
+	height:40px;
+	border-radius:20px;
+	position: fixed;
+	bottom:10px;
+	left:10px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.pause >.right{
+	width:5px;
+	height:20px;
+	background-color: white;
+	margin-left: 7px;
+}
+.pause >.left{
+	width:5px;
+	height:20px;
+	background-color: white;
+}
