@@ -1,11 +1,10 @@
 TODO:
--initial music shuffling?
 
--caching
+-shader precision?
+-have google index it
+-android app
 -tracking
--email list signup
+
+-email list signup?
 
 -more interesting mothership?
--shader precision?
-
--404 page

@@ -1,0 +1,145 @@
+class Particle extends EntityBase{
+	constructor(p,v,s,d,col,air,initialAge=0){
+		super(p,v);
+		this.size=s;
+		this.duration=d;
+		this.age=initialAge;
+		this.color=col;
+		this.airOnly=air;
+	}
+	run(timeStep){
+		this.pos.add(this.velo.cln().scl(timeStep));
+		this.age+=timeStep;
+		if(this.age>this.duration){
+			this.alive=false;
+		}
+	}
+	display(){
+		particleRenderer.spot(
+			this.pos.x,this.pos.y,
+			this.size*(1-this.age/this.duration),
+			this.velo.x,this.velo.y,
+			this.color.x,this.color.y,this.color.z,
+			this.airOnly);
+	}
+}
+class SplashParticle extends Particle{
+	constructor(p,v,s,d){
+		super(p,v,s,d,rgb(1,1,1),1);
+		this.gravity=Vec(0,.8);
+	}
+	run(timeStep){
+		super.run(timeStep);
+		if(!gameRunner.isUnderwater(this.pos.x,this.pos.y)){
+			this.velo.add(this.gravity.cln().scl(timeStep));
+		}
+	}
+}
+class BubbleParticle extends Particle{
+	constructor(p,v,s,d){
+		super(p,v,s,d,rgb(1.2,1.2,1.2),-1);
+		this.gravity=Vec(0,-1);
+		this.resistance=0.9;
+	}
+	run(timeStep){
+		super.run(timeStep);
+		if(gameRunner.isUnderwater(this.pos.x,this.pos.y)){
+			this.velo.add(this.gravity.cln().scl(timeStep));
+			this.velo.scl(this.resistance**timeStep);
+		}else{
+			this.alive=false;
+		}
+	}
+	display(){
+		particleRenderer.spot(
+			this.pos.x,this.pos.y,
+			this.size*(1-this.age/this.duration),
+			0,0,
+			this.color.x,this.color.y,this.color.z,
+			this.airOnly);
+	}
+}
+class ExplodeParticle extends Particle{
+	constructor(p,v,s,d,hasTrail=true){
+		let colS=rgb(.9,.5,.2).scl(3.);
+		super(p,v,s,d,colS,0);
+		this.colorStart=colS;
+		this.colorEnd=rgb(.2,.2,.2);
+		this.hasTrail=hasTrail;
+	}
+	run(timeStep){
+		super.run(timeStep);
+		this.color=this.colorEnd.cln().mix(this.colorStart,
+			Math.pow(1-this.age/this.duration,2)
+		);
+		if(this.hasTrail){
+			gameRunner.cloud(this.pos.x,this.pos.y,50,50,50,5*timeStep);
+		}
+	}
+}
+class WreckParticle extends Particle{
+	constructor(p,v,s,d){
+		let colS=rgb(.9,.5,.2).scl(3.);
+		super(p,v,s,d,colS,0);
+		this.colorStart=colS;
+		this.colorEnd=rgb(.2,.2,.2);
+		this.gravity=Vec(0,0.5);
+		this.resistance=0.95;
+		this.resistanceWater=0.8;
+
+		this.distance=0;
+	}
+	run(timeStep){
+		super.run(timeStep);
+		if(!this.alive){
+			return;
+		}
+		if(gameRunner.isUnderwater(this.pos.x,this.pos.y)){
+			this.velo.scl(this.resistanceWater**timeStep);
+		}else{
+			this.velo.add(this.gravity.cln().scl(timeStep));
+			this.velo.scl(this.resistance**timeStep);
+			if(gameRunner.rainbowExplosions){
+				this.distance+=this.velo.mag()*timeStep;
+				let col=hsv((this.distance*.002)%1,.8,1).toRgb().scl(255);
+				gameRunner.cloud(this.pos.x,this.pos.y,col.x,col.y,col.z,255*(1-this.age/this.duration)*timeStep);
+			}else{
+				gameRunner.cloud(this.pos.x,this.pos.y,50,50,50,100*(1-this.age/this.duration)*timeStep);
+			}
+		}
+		this.color=this.colorEnd.cln().mix(this.colorStart,
+			Math.pow(1-this.age/this.duration,2)
+		);
+	}
+	display(){
+		particleRenderer.spot(
+			this.pos.x,this.pos.y,
+			this.size*(1-this.age/this.duration),
+			0,0,
+			this.color.x,this.color.y,this.color.z,
+			this.airOnly);
+	}
+}
+class ThrustParticle extends Particle{
+	constructor(p,v,s,d,initialAge){
+		let colS=rgb(.9,.5,.2).scl(3.);
+		super(p,v,s,d,colS,0,initialAge);
+		this.colorStart=colS;
+		this.colorEnd=rgb(.6);
+	}
+	run(timeStep){
+		super.run(timeStep);
+		this.velo.scl(0.95);
+		this.color=this.colorEnd.cln().mix(this.colorStart,
+			Math.pow(1-this.age/this.duration,15)
+		);
+	}
+	display(){
+		particleRenderer.spot(
+			this.pos.x,this.pos.y,
+			this.size*(1-this.age/this.duration),
+			0,0,
+			this.color.x,this.color.y,this.color.z,
+			this.airOnly);
+	}
+}
