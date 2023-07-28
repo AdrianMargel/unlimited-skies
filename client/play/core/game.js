@@ -148,6 +148,11 @@ class Game{
 			//randomize cloud seed every time
 			this.cloudSeedOffset=Math.random()*100000;
 			this.player.start();
+
+			track("start",{
+				plane:this.player.constructor.name,
+				level:this.player.level
+			});
 		}
 	}
 	gameOver(){
@@ -174,6 +179,11 @@ class Game{
 		showWin.data=false;
 	}
 	end(){
+		track("end",{
+			wave:waveNum.data,
+			alive:this.player.isAlive()
+		});
+		
 		this.pausedControl=false;
 		this.canControl=false;
 		this.director.end();
