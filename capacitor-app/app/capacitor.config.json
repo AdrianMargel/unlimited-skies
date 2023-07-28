@@ -1,0 +1,11 @@
+{
+  "appId": "ca.unlimitedskies.app",
+  "appName": "unlimited-skies",
+  "bundledWebRuntime": true,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}
