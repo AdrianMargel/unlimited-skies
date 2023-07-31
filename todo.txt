@@ -3,7 +3,6 @@ TODO:
 -shader precision?
 -have google index it
 -android app
--tracking
 
 -email list signup?
 
