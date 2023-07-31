@@ -1,3 +1,5 @@
+const staticAppFiles = "unlimited-skies-v1";
+
 let gl=document.getElementById("c").getContext("webgl2",{
 	premultipliedAlpha: true
 });
@@ -65,6 +67,20 @@ function sleep(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function cacheFile(file){
+	if(!navigator.onLine){
+		return;
+	}
+	try{
+		let cache=await caches.open(staticAppFiles);
+		console.log('caching file '+file);
+		await cache.add(file);
+		console.log('caching complete');
+	}catch(e){
+
+	}
+}
+
 let showLoading=bind(true);
 function completeShaderLoad(){
 	showLoading.data=false;
@@ -116,6 +132,36 @@ let uiBodyHtml=html`
 uiBody=uiBodyHtml().data
 addElm(uiBody,document.body);
 uiBody.disolve();
+
+//cache music outside of the service worker
+//this is lower priority and doesn't need to hold up the PWA install
+let musicAssets=[
+	"/music/special/nyan.mp3",
+	"/music/Backbonebreaks.mp3",
+	"/music/Beatfever.mp3",
+	"/music/Clutterfunk, Pt. 2.mp3",
+	"/music/Combo Breaker.mp3",
+	"/music/Fireburst.mp3",
+	"/music/Geometrical Dominator.mp3",
+	"/music/Give Me a Break.mp3",
+	"/music/Rocket Race.mp3",
+	"/music/Run.mp3",
+	"/music/Snow in the Air.mp3",
+	"/music/Striker.mp3",
+	"/music/Supra Zone.mp3",
+];
+(async ()=>{
+	let cache=await caches.open(staticAppFiles);
+	let cached=(await cache.keys()).map(x=>new URL(x.url).pathname);
+	for(let i=0;i<musicAssets.length;i++){
+		if(cached.includes(encodeURI(musicAssets[i]))){
+			console.log("already cached "+musicAssets[i])
+		}else{
+			await cacheFile(musicAssets[i]);
+		}
+	}
+})();
+
 
 function gimmeMoney(){
 	console.log(";)");
