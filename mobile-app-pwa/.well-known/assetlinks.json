@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "ca.unlimitedskies.app.twa",
+        "sha256_cert_fingerprints": ["13:F1:03:09:45:5A:0B:B3:C9:30:3C:5B:88:5C:D7:9B:21:1A:E2:BE:37:07:21:FD:39:A9:51:22:FB:32:F2:3F"]
+      }
+    }]
