@@ -90,6 +90,8 @@ button{
 	box-sizing: border-box;
 }
 .play>div{
+	box-sizing: border-box;
+	min-height: 580px;
 	padding:10px;
 	padding-bottom: 50px;
 	border-radius: 10px;
@@ -115,6 +117,14 @@ button{
 .play ul>li{
 	margin:0;
 	margin-bottom: 10px;
+}
+.googlePlay img{
+	max-width: 200px;
+}
+.playOr{
+	font-family: 'Fredoka One', sans-serif;
+	font-size:20px;
+	margin:0;
 }
 .buttonClickable{
 	margin-top:20px;
