@@ -253,9 +253,6 @@ let urlParams=new URLSearchParams(window.location.search);
 let isSandboxMode=urlParams.get('sandbox')!=null;
 playerProgress=bind(loadProgress(playerProgress));
 
-if(isSandboxMode){
-	playerProgress.coins.data+=1000000000000;
-}
 function unlockSpaghetti(){
 	playerProgress.unlocks[11].hidden.data=false;
 }
@@ -316,12 +313,12 @@ class ButtonPrice extends CustomElm{
 		this.define(html`
 			<button
 				onclick=${attr(act(()=>{
-					if(coins.data>=price.data){
-						coins.data-=price.data;
+					if(coins.data>=price.data||isSandboxMode){
+						coins.data=max(coins.data-price.data,0);
 						event.data();
 					}
 				}))(event)}
-				class=${attr(()=>coins.data<price.data?"locked":"")(coins,price)}
+				class=${attr(()=>(coins.data<price.data&&!isSandboxMode)?"locked":"")(coins,price)}
 			>
 				<div class="surface">
 					${html`${()=>price.data==0?"Free":cDisp}`(coins,price)}
