@@ -7,6 +7,7 @@ body{
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	padding-bottom: 40px;
 }
 body>.background{
 	position: absolute;
@@ -23,7 +24,9 @@ body>.content{
 	align-items: stretch;
 	flex-direction: column;
 	position: relative;
-	padding-bottom: 40px;
+}
+body>.content.wide{
+	align-self: stretch;
 }
 body>div>.card{
 	max-width: 800px;
@@ -72,40 +75,43 @@ button{
 	background: none;
 }
 .playOptions{
-	max-width: 880px;
 	display:flex;
 	justify-content: center;
 	flex-wrap: wrap-reverse;
 }
 .play{
-	min-width: 250px;
-	max-width: 400px;
+	min-width: 300px;
 	flex-basis: 0;
 	flex-grow:1;
-	border:4px solid black;
-	border-radius: 20px;
-	margin:0 20px;
-	margin-top:40px;
-	padding:10px;
 	box-sizing: border-box;
+	margin-top:40px;
+	border-top:4px solid black;
+	border-bottom:4px solid black;
 }
 .play>div{
 	box-sizing: border-box;
 	min-height: 580px;
 	padding:10px;
 	padding-bottom: 50px;
-	border-radius: 10px;
-	background-color: #00000080;
+	border:2px solid black;
+	border-top:none;
+	border-bottom:none;
 	position: relative;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	background-color: #00000080;
+	transition: background-color .1s, box-shadow .2s;
+}
+.play>div:hover{
+	background-color: #40404080;
+	box-shadow: 0 0 30px #00000080;
 }
 .play .title{
 	font-family: 'Fredoka One', sans-serif;
 	font-size:40px;
 	position: absolute;
-	top:-50px;
+	top:-52px;
 	padding:5px 20px;
 	border-radius: 100px;
 	background-color: #000000;
@@ -125,6 +131,27 @@ button{
 	font-family: 'Fredoka One', sans-serif;
 	font-size:20px;
 	margin:0;
+}
+.images{
+	user-select: none;
+	display:flex;
+	justify-content: center;
+	overflow: hidden;
+	margin-top: -60px;
+	margin-bottom: -40px;
+	z-index: 1;
+}
+.images>div{
+	max-height:300px;
+	min-height:300px;
+	max-width:400px;
+	min-width:400px;
+	background-position: center;
+	background-size: cover;
+	
+	box-shadow: 0 0 13.36200832951853px #00000080;
+	border-radius: 10px;
+	margin:20px;
 }
 .buttonClickable{
 	margin-top:20px;
